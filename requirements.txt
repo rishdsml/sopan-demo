@@ -5,3 +5,6 @@ langchain-openai
 openai
 faiss-cpu
 python-dotenv
+serpapi
+os
+dotenv
