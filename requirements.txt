@@ -5,6 +5,6 @@ langchain-openai
 openai
 faiss-cpu
 python-dotenv
-serpapi>=0.1.5
+serpapi==0.1.5
 
 
