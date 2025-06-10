@@ -1,5 +1,5 @@
 import os
-from serpapi import GoogleSearch
+from serpapi.google_search import GoogleSearch
 from typing import List
 from dotenv import load_dotenv
 load_dotenv()
