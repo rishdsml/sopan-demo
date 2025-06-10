@@ -1,21 +1,26 @@
-from llm_reponse import generate_reply
+import streamlit as st
 
-# Simulate a real field email from a Sopan team
-query = """
-Subject: Element Damage Observed in BHA Post Trip-Out
+st.set_page_config(page_title="Layout Test")
 
-We observed significant scraping and deep scoring on the outer cage and setting cone of the BHA after pulling out of hole.
-Formation: Midale
-BHA Type: SFC
-Packer Type: Mongoose
-Observed Sleeve Shift Pressure: ~3050 psi
+st.header("Layout Test")
+st.info("This is a simple test to check button placement.")
+st.write("The 'Clear Chat' button should appear at the very bottom, just above the text input bar.")
 
-Please advise on possible causes and corrective actions.
-"""
+# Simulate some chat history so the page has content
+for i in range(3):
+    with st.chat_message("assistant"):
+        st.write(f"This is a sample message {i+1}")
 
-# Call your RAG bot
-response = generate_reply(query)
+st.markdown("---")
+st.write("This is the end of the page's main content.")
+st.markdown("---")
 
-# Output result
-print("\n--- Final RAG Bot Response ---\n")
-print(response)
+
+# This is the chat input widget that should be stuck to the bottom of the screen.
+user_input = st.chat_input("Your input here...")
+
+# This button is defined AFTER the chat input in the script.
+# It should appear in the page flow, which means it will be the
+# LAST thing before the input bar.
+if st.button("Clear Chat"):
+    st.balloons()

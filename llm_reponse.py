@@ -25,7 +25,7 @@ def generate_reply(query: str) -> str:
     start = time.time()
 
     # Step 1: FAISS Retrieval
-    faiss_docs = retrieve(query, k=5)
+    faiss_docs = retrieve(query, k=10)
     faiss_text = "\n\n".join([doc.page_content for doc in faiss_docs])
 
     print(f"\n [Memory] Retrieved {len(faiss_docs)} internal documents.")

@@ -32,3 +32,4 @@ for i, chunk in enumerate(chunks):
 
 vectorstore.save_local("faiss_store")
 print(" FAISS store built and saved.")
+print("Total documents indexed:", len(documents))
