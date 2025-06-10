@@ -1,44 +1,39 @@
 import os
-from serpapi.google_search import GoogleSearch
+from serpapi import GoogleSearch
 from typing import List
 from dotenv import load_dotenv
+from langchain.agents import tool
+
 load_dotenv()
 
-import os
-
-
-SERPAPI_API_KEY = os.getenv("SERPAPI_API_KEY")
-
-def search_web(query: str, num_results: int = 3) -> List[str]:
+@tool
+def web_search_tool(query: str) -> str:
     """
-    Search the web using SerpAPI and return top N snippets.
-
-    Args:
-        query (str): The user query to search for.
-        num_results (int): Number of snippets to return.
-
-    Returns:
-        List[str]: List of top snippets from search results.
+    Use this tool to find up-to-date information on the public internet. 
+    Best for questions about external companies, general technical knowledge, current events, or anything that would not be found in the internal NCR database.
     """
+    print(f"--- Calling Web Search Tool with query: {query} ---")
     params = {
         "q": query,
         "api_key": os.getenv("SERPAPI_API_KEY"),
-        "num": num_results,
+        "num": 3,  # Get top 3 results
         "engine": "google",
     }
-
     try:
         search = GoogleSearch(params)
         results = search.get_dict()
         snippets = []
 
-        for result in results.get("organic_results", [])[:num_results]:
+        for result in results.get("organic_results", []):
             snippet = result.get("snippet") or result.get("title")
             if snippet:
                 snippets.append(snippet)
+        
+        if not snippets:
+            return "No relevant information found on the web."
 
-        return snippets
+        return "\n".join(snippets)
 
     except Exception as e:
         print(f" [ERROR] Web search failed: {e}")
-        return []
+        return "There was an error performing the web search."
