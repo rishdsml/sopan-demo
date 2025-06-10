@@ -22,8 +22,8 @@ qa_chain = RetrievalQA.from_chain_type(
 
 # Page setup
 st.set_page_config(page_title="NCR Chatbot", layout="centered")
-st.title("Sopan NCR Chatbot")
-st.markdown("Ask me anything about NCRs, root causes, or field issues.")
+st.title("FieldBot")
+st.markdown("Ask me anything about reports, root causes, or field issues.")
 st.info("For detailed field analysis, prefix your query with `analyze:`")
 
 # Initialize session state
