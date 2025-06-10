@@ -6,4 +6,3 @@ openai
 faiss-cpu
 python-dotenv
 serpapi
-dotenv
